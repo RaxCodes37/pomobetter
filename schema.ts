@@ -16,6 +16,9 @@ export const task = pgTable("task", {
   completed: boolean("completed").default(false).notNull(),
   createdAt: timestamp("created_at", { mode: "string" }).defaultNow().notNull(),
   updatedAt: timestamp("updated_at", { mode: "string" }).defaultNow().notNull(),
+  taskCreator: text("task_creator")
+    .notNull()
+    .references(() => user.id, { onDelete: "cascade" }),
 });
 
 export const user = pgTable("user", {
