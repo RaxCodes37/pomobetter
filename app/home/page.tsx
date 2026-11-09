@@ -7,10 +7,11 @@ export default async function Home() {
   const session = await getSession();
 
   if (!session) redirect("/sign-in");
+  const userId = session.user.id;
 
   return (
     <div className="flex flex-col items-center h-screen">
-      <HomeClient />
+      <HomeClient userId={userId} />
     </div>
   );
 }
