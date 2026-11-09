@@ -1,4 +1,5 @@
 import { signInAction } from "../api/auth";
+export const instant = false;
 
 export default function SignIn() {
   return (
