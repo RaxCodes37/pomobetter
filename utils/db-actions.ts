@@ -1,15 +1,17 @@
 "use server";
 
-import { eq } from "drizzle-orm";
+import { eq, InferInsertModel } from "drizzle-orm";
 import { task } from "@/schema";
 import { Task } from "./interfaces";
 import { db } from "..";
 
 export const getTasks = async (userId: string) => {
-  return (await db
+  const tasks = await db
     .select()
     .from(task)
-    .where(eq(task.taskCreator, userId))) as Task[];
+    .where(eq(task.taskCreator, userId));
+
+  return tasks as Task[];
 };
 
 export const addTask = async (
@@ -19,11 +21,11 @@ export const addTask = async (
   note: string,
 ) => {
   await db.insert(task).values({
-    taskCreator: userId,
     title,
     description,
     note,
-  });
+    taskCreator: userId,
+  } as InferInsertModel<typeof task>);
 };
 
 export const editTask = async (
@@ -34,7 +36,11 @@ export const editTask = async (
 ) => {
   await db
     .update(task)
-    .set({ title: newTitle, description: newDescription, note: newNote })
+    .set({
+      title: newTitle,
+      description: newDescription,
+      note: newNote,
+    } as Partial<InferInsertModel<typeof task>>)
     .where(eq(task.id, taskId));
 };
 

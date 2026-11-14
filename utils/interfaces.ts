@@ -5,4 +5,5 @@ export interface Task {
   completed: boolean;
   createdAt: string;
   updatedAt: string;
+  taskCreator: string;
 }
