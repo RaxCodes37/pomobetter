@@ -9,16 +9,14 @@ import {
 } from "drizzle-orm/pg-core";
 
 export const task = pgTable("task", {
-  id: uuid("id").primaryKey().defaultRandom(),
+  id: text("id").primaryKey(),
   title: text("title").notNull(),
   description: text("description"),
   note: text("note"),
   completed: boolean("completed").default(false).notNull(),
   createdAt: timestamp("created_at", { mode: "string" }).defaultNow().notNull(),
   updatedAt: timestamp("updated_at", { mode: "string" }).defaultNow().notNull(),
-  taskCreator: text("task_creator")
-    .notNull()
-    .references(() => user.id, { onDelete: "cascade" }),
+  taskCreator: text("task_creator").notNull().references(() => user.id),
 });
 
 export const user = pgTable("user", {
