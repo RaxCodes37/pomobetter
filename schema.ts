@@ -15,7 +15,6 @@ export const task = pgTable("task", {
     .default(sql`gen_random_uuid()`),
   title: text("title").notNull(),
   description: text("description"),
-  note: text("note"),
   completed: boolean("completed").default(false).notNull(),
   createdAt: timestamp("created_at", { mode: "string" }).defaultNow().notNull(),
   updatedAt: timestamp("updated_at", { mode: "string" }).defaultNow().notNull(),
