@@ -2,6 +2,8 @@
 
 import { Task } from "@/utils/interfaces";
 import AddTaskButton from "./task-related/add-task-button";
+import { deleteTask } from "@/utils/db-actions";
+import { IoTrashOutline } from "react-icons/io5";
 
 interface Props {
   tasks: Task[];
@@ -22,8 +24,17 @@ export default function TaskDisplay({ tasks, userId }: Props) {
               key={task.id}
               className="flex flex-col gap-2 bg-[#212020] rounded-md border border-[#393838] shadow-md text-left p-3 duration-400 hover:translate-y-px transition-transform"
             >
-              <p>{task.title}</p>
-
+              <div className="flex justify-between items-center">
+                <p>{task.title}</p>
+                <button
+                  className="cursor-pointer"
+                  onClick={() => {
+                    deleteTask(task.id);
+                  }}
+                >
+                  <IoTrashOutline />
+                </button>
+              </div>
               {task.description && (
                 <p className="bg-[#343434] rounded-md border border-[#464646] shadow-md text-left p-3 ">
                   {task.description}
