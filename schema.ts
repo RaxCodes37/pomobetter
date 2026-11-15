@@ -1,4 +1,4 @@
-import { relations } from "drizzle-orm";
+import { relations, sql } from "drizzle-orm";
 import {
   pgTable,
   text,
@@ -6,17 +6,22 @@ import {
   boolean,
   index,
   uuid,
+  serial,
 } from "drizzle-orm/pg-core";
 
 export const task = pgTable("task", {
-  id: text("id").primaryKey(),
+  id: text("id")
+    .primaryKey()
+    .default(sql`gen_random_uuid()`),
   title: text("title").notNull(),
   description: text("description"),
   note: text("note"),
   completed: boolean("completed").default(false).notNull(),
   createdAt: timestamp("created_at", { mode: "string" }).defaultNow().notNull(),
   updatedAt: timestamp("updated_at", { mode: "string" }).defaultNow().notNull(),
-  taskCreator: text("task_creator").notNull().references(() => user.id),
+  taskCreator: text("task_creator")
+    .notNull()
+    .references(() => user.id),
 });
 
 export const user = pgTable("user", {
