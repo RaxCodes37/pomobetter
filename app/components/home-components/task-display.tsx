@@ -48,7 +48,7 @@ export default function TaskDisplay({ tasks, setTasks, userId }: Props) {
           {tasks.map((task) => (
             <li
               key={task.id}
-              className="flex flex-col gap-3 bg-[#212020] rounded-md border border-[#393838] shadow-md text-left p-3 duration-400 hover:translate-y-px transition-transform"
+              className="flex flex-col gap-3 bg-[#212020] rounded-md border border-[#393838] shadow-md text-left p-3 duration-400 hover:bg-[#232323] transition-transform"
             >
               <div className="flex justify-between items-center">
                 <p>{task.title}</p>
