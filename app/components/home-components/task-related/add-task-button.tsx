@@ -17,6 +17,7 @@ export default function AddTaskButton({ userId }: Props) {
 
     try {
       await addTask(userId, taskName, taskDescription);
+      window.location.reload();
     } catch (error) {
       console.error("Error adding task, try again later", error);
     }

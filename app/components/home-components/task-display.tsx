@@ -29,6 +29,7 @@ export default function TaskDisplay({ tasks, setTasks, userId }: Props) {
         newTaskDescription,
         tasks.find((task) => task.id === taskIdToEdit)?.completed ?? false,
       );
+      window.location.reload();
     } catch (error) {
       console.error("Failed to edit task:", error);
     }
