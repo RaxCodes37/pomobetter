@@ -5,8 +5,6 @@ import {
   timestamp,
   boolean,
   index,
-  uuid,
-  serial,
 } from "drizzle-orm/pg-core";
 
 export const task = pgTable("task", {

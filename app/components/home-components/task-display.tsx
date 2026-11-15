@@ -4,7 +4,7 @@ import { Task } from "@/utils/interfaces";
 import AddTaskButton from "./task-related/add-task-button";
 import { deleteTask, editTask } from "@/utils/db-actions";
 import { IoTrashOutline } from "react-icons/io5";
-import { BiCheckbox, BiSolidCheckbox, BiSolidEdit } from "react-icons/bi";
+import { BiSolidEdit } from "react-icons/bi";
 import { useState } from "react";
 import { FaCheck } from "react-icons/fa6";
 
