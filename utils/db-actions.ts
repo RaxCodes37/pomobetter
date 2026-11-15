@@ -18,12 +18,10 @@ export const addTask = async (
   userId: string,
   title: string,
   description: string,
-  note: string,
 ) => {
   await db.insert(task).values({
     title,
     description,
-    note,
     taskCreator: userId,
   } as InferInsertModel<typeof task>);
 };
@@ -32,14 +30,12 @@ export const editTask = async (
   taskId: string,
   newTitle: string,
   newDescription: string,
-  newNote: string,
 ) => {
   await db
     .update(task)
     .set({
       title: newTitle,
       description: newDescription,
-      note: newNote,
     } as Partial<InferInsertModel<typeof task>>)
     .where(eq(task.id, taskId));
 };

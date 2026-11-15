@@ -11,13 +11,12 @@ export default function AddTaskButton({ userId }: Props) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [taskName, setTaskName] = useState<string>("");
   const [taskDescription, setTaskDescription] = useState<string>("");
-  const [taskNotes, setTaskNotes] = useState<string>("");
 
   const handleCreateTask = async (e: React.FormEvent) => {
     e.preventDefault();
 
     try {
-      await addTask(userId, taskName, taskDescription, taskNotes);
+      await addTask(userId, taskName, taskDescription);
     } catch (error) {
       console.error("Error adding task, try again later", error);
     }
@@ -77,18 +76,6 @@ export default function AddTaskButton({ userId }: Props) {
                   placeholder="Enter Task description (optional)"
                   value={taskDescription}
                   onChange={(event) => setTaskDescription(event.target.value)}
-                  className="w-full rounded-md border border-[#393838] bg-[#1f1e1e] px-3 py-2 outline-none focus:border-gray-400"
-                />
-              </div>
-              <div className="flex flex-col items-start">
-                <label className="mb-1 block text-md text-[#7e7e7e]">
-                  Task Notes
-                </label>
-                <textarea
-                  autoFocus
-                  placeholder="Enter Task Notes (optional)"
-                  value={taskNotes}
-                  onChange={(event) => setTaskNotes(event.target.value)}
                   className="w-full rounded-md border border-[#393838] bg-[#1f1e1e] px-3 py-2 outline-none focus:border-gray-400"
                 />
               </div>
