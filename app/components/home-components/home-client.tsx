@@ -22,7 +22,7 @@ export default function HomeClient({ userId }: Props) {
   }, []);
 
   return (
-    <div>
+    <div className="flex flex-col items-center min-h-screen text-center">
       <HomeNavBar />
       <PomodoroDisplay />
       <TaskDisplay tasks={tasks} />

@@ -64,27 +64,44 @@ export default function PomodoroDisplay() {
   }
 
   return (
-    <section aria-label="Pomodoro timer">
-      <h2>
+    <section aria-label="Pomodoro timer" className="w-100 mt-10 ">
+      <h2 className="text-4xl font-bold bg-[#2B2A2A] rounded-t-md p-2 h-20 flex items-center justify-center">
         {mode === "work" ? "Focus" : mode === "break" ? "Break" : "Long Break"}
       </h2>
-      <p aria-live="polite" aria-atomic="true">
-        {minutes}:{seconds}
-      </p>
-      {mode === "work" ? (
-        <p>Completed focus sessions: {completedWorkSessions}</p>
-      ) : mode === "break" ? (
-        <p>Completed break sessions: {completedShortBreakSessions}</p>
-      ) : (
-        <p>Completed long break sessions: {completedLongBreakSessions}</p>
-      )}
-
-      <button type="button" onClick={() => setIsRunning((running) => !running)}>
-        {isRunning ? "Pause" : "Start"}
-      </button>
-      <button type="button" onClick={resetTimer}>
-        Reset
-      </button>
+      <div className="bg-[#393838] py-3 pb-4">
+        <p className="text-4xl font-bold p-2">
+          {minutes}:{seconds}
+        </p>
+        {mode === "work" ? (
+          <p className="text-[#5b5b5b]">
+            Completed focus sessions: {completedWorkSessions}
+          </p>
+        ) : mode === "break" ? (
+          <p className="text-[#5b5b5b]">
+            Completed break sessions: {completedShortBreakSessions}
+          </p>
+        ) : (
+          <p className="text-[#5b5b5b]">
+            Completed long break sessions: {completedLongBreakSessions}
+          </p>
+        )}
+      </div>
+      <div className="bg-[#2B2A2A] h-20 rounded-b-md flex justify-between text-2xl font-semibold">
+        <button
+          type="button"
+          onClick={() => setIsRunning((running) => !running)}
+          className="w-[50%] border-r border-[#393838] duration-400 hover:bg-[#302e2e]"
+        >
+          {isRunning ? "Pause" : "Start"}
+        </button>
+        <button
+          type="button"
+          onClick={resetTimer}
+          className="w-[50%] duration-400 hover:bg-[#302e2e]"
+        >
+          Reset
+        </button>
+      </div>
     </section>
   );
 }
