@@ -64,7 +64,7 @@ export default function PomodoroDisplay() {
   }
 
   return (
-    <section aria-label="Pomodoro timer" className="w-100 mt-10 ">
+    <section aria-label="Pomodoro timer" className="w-100 mt-10 border border-[#393838] rounded-md">
       <h2 className="text-4xl font-bold bg-[#2B2A2A] rounded-t-md p-2 h-20 flex items-center justify-center">
         {mode === "work" ? "Focus" : mode === "break" ? "Break" : "Long Break"}
       </h2>
