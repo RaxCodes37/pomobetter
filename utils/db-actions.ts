@@ -30,12 +30,14 @@ export const editTask = async (
   taskId: string,
   newTitle: string,
   newDescription: string,
+  completed: boolean,
 ) => {
   await db
     .update(task)
     .set({
       title: newTitle,
       description: newDescription,
+      completed,
     } as Partial<InferInsertModel<typeof task>>)
     .where(eq(task.id, taskId));
 };

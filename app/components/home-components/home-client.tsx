@@ -25,7 +25,7 @@ export default function HomeClient({ userId }: Props) {
     <div className="flex flex-col items-center min-h-screen text-center">
       <HomeNavBar />
       <PomodoroDisplay />
-      <TaskDisplay tasks={tasks} userId={userId} />
+      <TaskDisplay tasks={tasks} setTasks={setTasks} userId={userId} />
     </div>
   );
 }
