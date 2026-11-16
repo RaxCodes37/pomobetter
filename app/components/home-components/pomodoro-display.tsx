@@ -3,8 +3,8 @@
 import { useEffect, useState } from "react";
 
 // "25" and "5" will later be changed to a variable
-const work_duration = 0.1 * 60;
-const break_duration = 0.1 * 60;
+const work_duration = 25 * 60;
+const break_duration = 5 * 60;
 const long_break_duration = 15 * 60;
 
 export default function PomodoroDisplay() {
