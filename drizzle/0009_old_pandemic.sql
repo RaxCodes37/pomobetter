@@ -1,0 +1,1 @@
+ALTER TABLE "task" RENAME COLUMN "category" TO "is_habit";
