@@ -3,11 +3,12 @@
 import { useEffect, useState } from "react";
 
 // "25" and "5" will later be changed to a variable
-const work_duration = 25 * 60;
-const break_duration = 5 * 60;
-const long_break_duration = 15 * 60;
+const work_duration = 0.1 * 60;
+const break_duration = 0.1 * 60;
+const long_break_duration = 0.1 * 60;
 
 export default function PomodoroDisplay() {
+  const timerUpAudio = new Audio("pppp-timer-up.mp3");
   const [mode, setMode] = useState<"work" | "break" | "long_break">("work");
   const [secondsRemaining, setSecondsRemaining] = useState(work_duration);
   const [isRunning, setIsRunning] = useState(false);
@@ -26,6 +27,7 @@ export default function PomodoroDisplay() {
 
         if (mode === "work") {
           setCompletedWorkSessions((sessions) => sessions + 0.5);
+          timerUpAudio.play();
           if (completedWorkSessions === 2) {
             setMode("long_break");
             return long_break_duration;
@@ -37,11 +39,13 @@ export default function PomodoroDisplay() {
 
         if (mode === "break") {
           setCompletedShortBreakSessions((sessions) => sessions + 0.5);
+          timerUpAudio.play();
         }
 
         if (mode === "long_break") {
           setCompletedLongBreakSessions((sessions) => sessions + 0.5);
           setCompletedShortBreakSessions(0);
+          timerUpAudio.play();
         }
 
         setMode("work");
@@ -64,7 +68,10 @@ export default function PomodoroDisplay() {
   }
 
   return (
-    <section aria-label="Pomodoro timer" className="w-100 mt-10 border border-[#393838] rounded-md">
+    <section
+      aria-label="Pomodoro timer"
+      className="w-100 mt-10 border border-[#393838] rounded-md"
+    >
       <h2 className="text-4xl font-bold bg-[#2B2A2A] rounded-t-md p-2 h-20 flex items-center justify-center">
         {mode === "work" ? "Focus" : mode === "break" ? "Break" : "Long Break"}
       </h2>
