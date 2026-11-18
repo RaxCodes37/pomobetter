@@ -20,7 +20,9 @@ export default function TaskDisplay({ tasks, setTasks, userId }: Props) {
   const [newTaskName, setNewTaskName] = useState<string>("");
   const [newTaskDescription, setNewTaskDescription] = useState<string>("");
   const [taskIdToEdit, setTaskIdToEdit] = useState<string>("");
-  const [showSettings, setShowSettings] = useState<boolean>(false);
+  const [openSettingsTaskId, setOpenSettingsTaskId] = useState<string | null>(
+    null,
+  );
 
   return (
     <div className="w-100 mt-5">
@@ -38,7 +40,7 @@ export default function TaskDisplay({ tasks, setTasks, userId }: Props) {
             >
               <div className="flex justify-between items-center">
                 <p>{task.title}</p>
-                <div className="flex gap-3 text-lg">
+                <div className="flex items-baseline gap-3 text-lg">
                   <button
                     className={`cursor-pointer text-sm flex items-center justify-center ${task.completed ? "bg-[#3a3a3a]" : ""} border border-[#3a3a3a] w-4.5 h-4.5 rounded-full`}
                     onClick={async () => {
@@ -60,29 +62,26 @@ export default function TaskDisplay({ tasks, setTasks, userId }: Props) {
                   >
                     {task.completed ? <FaCheck /> : null}
                   </button>
-                  <div className="text-lg">
+                  <div className="relative text-lg">
                     <button
                       className="cursor-pointer"
                       onClick={() => {
-                        if (!showSettings) setShowSettings(true);
-                        else {
-                          setShowSettings(false);
-                        }
+                        setOpenSettingsTaskId((currentTaskId) =>
+                          currentTaskId === task.id ? null : task.id,
+                        );
                       }}
                     >
                       <BsThreeDots />
                     </button>
-                    {showSettings ? (
-                      <div>
-                        <TaskSettings
-                          task={task}
-                          setTasks={setTasks}
-                          setIsEditModeOpen={setIsEditModeOpen}
-                          setNewTaskName={setNewTaskName}
-                          setNewTaskDescription={setNewTaskDescription}
-                          setTaskIdToEdit={setTaskIdToEdit}
-                        />
-                      </div>
+                    {openSettingsTaskId === task.id ? (
+                      <TaskSettings
+                        task={task}
+                        setTasks={setTasks}
+                        setIsEditModeOpen={setIsEditModeOpen}
+                        setNewTaskName={setNewTaskName}
+                        setNewTaskDescription={setNewTaskDescription}
+                        setTaskIdToEdit={setTaskIdToEdit}
+                      />
                     ) : null}
                   </div>
                 </div>
