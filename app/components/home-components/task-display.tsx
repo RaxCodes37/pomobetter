@@ -41,7 +41,7 @@ export default function TaskDisplay({ tasks, setTasks, userId }: Props) {
     <div className="w-100 mt-5">
       <AddTaskButton userId={userId} />
 
-      <div className="mt-5 w-full bg-[#2B2A2A] border border-[#393838] rounded-md py-3">
+      <div className="mt-5 mb-10 w-full bg-[#2B2A2A] border border-[#393838] rounded-md py-3">
         <h2 className="text-2xl font-bold">Your Tasks</h2>
         <hr className="mt-3 mb-4.5 text-[#393838]" />
         <ul className="flex flex-col gap-2 px-4">
