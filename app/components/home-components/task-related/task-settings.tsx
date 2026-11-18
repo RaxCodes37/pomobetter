@@ -11,6 +11,8 @@ interface Props {
   setNewTaskName: React.Dispatch<React.SetStateAction<string>>;
   setNewTaskDescription: React.Dispatch<React.SetStateAction<string>>;
   setTaskIdToEdit: React.Dispatch<React.SetStateAction<string>>;
+  isHabit: boolean;
+  setIsHabit: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export default function TaskSettings({
@@ -20,9 +22,11 @@ export default function TaskSettings({
   setNewTaskName,
   setNewTaskDescription,
   setTaskIdToEdit,
+  isHabit,
+  setIsHabit,
 }: Props) {
   return (
-    <div className="absolute right-0 top-full z-10 mt-2 grid w-11 grid-cols-1 gap-1 rounded-md border border-[#393838] bg-[#171717] p-1 text-lg shadow-lg">
+    <div className="absolute right-0 top-full z-10 mt-2 grid w-11 grid-cols-1 justify-center gap-1 rounded-md border border-[#393838] bg-[#171717] p-1 text-lg text-center shadow-lg">
       <button
         className="flex h-9 w-full cursor-pointer items-center justify-center rounded hover:bg-[#2B2A2A]"
         onClick={() => {

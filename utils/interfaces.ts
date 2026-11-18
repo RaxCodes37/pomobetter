@@ -6,4 +6,5 @@ export interface Task {
   createdAt: string;
   updatedAt: string;
   taskCreator: string;
+  isHabit: boolean;
 }

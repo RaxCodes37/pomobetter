@@ -23,6 +23,7 @@ export default function TaskDisplay({ tasks, setTasks, userId }: Props) {
   const [openSettingsTaskId, setOpenSettingsTaskId] = useState<string | null>(
     null,
   );
+  const [isHabit, setIsHabit] = useState<boolean>(false) // false = task (default), true = habit
 
   return (
     <div className="w-100 mt-5">
@@ -57,6 +58,7 @@ export default function TaskDisplay({ tasks, setTasks, userId }: Props) {
                         task.title,
                         task.description,
                         completed,
+                        isHabit
                       );
                     }}
                   >
@@ -81,6 +83,8 @@ export default function TaskDisplay({ tasks, setTasks, userId }: Props) {
                         setNewTaskName={setNewTaskName}
                         setNewTaskDescription={setNewTaskDescription}
                         setTaskIdToEdit={setTaskIdToEdit}
+                        isHabit={isHabit}
+                        setIsHabit={setIsHabit}
                       />
                     ) : null}
                   </div>
@@ -102,6 +106,9 @@ export default function TaskDisplay({ tasks, setTasks, userId }: Props) {
               setNewTaskDescription={setNewTaskDescription}
               taskIdToEdit={taskIdToEdit}
               tasks={tasks}
+              setTasks={setTasks}
+              isHabit={isHabit}
+              setIsHabit={setIsHabit}
             />
           )}
         </ul>

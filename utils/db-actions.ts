@@ -31,6 +31,7 @@ export const editTask = async (
   newTitle: string,
   newDescription: string,
   completed: boolean,
+  isHabit: boolean,
 ) => {
   await db
     .update(task)
@@ -38,6 +39,7 @@ export const editTask = async (
       title: newTitle,
       description: newDescription,
       completed,
+      isHabit,
     } as Partial<InferInsertModel<typeof task>>)
     .where(eq(task.id, taskId));
 };
