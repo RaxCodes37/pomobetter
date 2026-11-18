@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 // "25" and "5" will later be changed to a variable
 const work_duration = 25 * 60;
@@ -8,11 +8,27 @@ const break_duration = 5 * 60;
 const long_break_duration = 15 * 60;
 
 export default function PomodoroDisplay() {
-  const timerUpAudio = new Audio("pppp-timer-up.mp3");
+  const timerUpAudio = useRef<HTMLAudioElement | null>(null);
   const [mode, setMode] = useState<"work" | "break" | "long_break">("work");
   const [secondsRemaining, setSecondsRemaining] = useState(work_duration);
   const [isRunning, setIsRunning] = useState(false);
   const [completedWorkSessions, setCompletedWorkSessions] = useState(0);
+
+  function playTimerUpSound() {
+    const audio = timerUpAudio.current;
+    if (!audio) return;
+
+    void audio.play().catch((error: unknown) => {
+      console.error("Could not play the timer sound", error);
+    });
+  }
+
+  useEffect(() => {
+    timerUpAudio.current = new Audio("/pppp-timer-up.mp3");
+    return () => {
+      timerUpAudio.current = null;
+    };
+  }, []);
 
   useEffect(() => {
     if (!isRunning) return;
@@ -23,7 +39,7 @@ export default function PomodoroDisplay() {
 
         if (mode === "work") {
           setCompletedWorkSessions((sessions) => sessions + 0.5);
-          timerUpAudio.play();
+          playTimerUpSound();
           if (completedWorkSessions === 2) {
             setMode("long_break");
             return long_break_duration;
@@ -34,11 +50,11 @@ export default function PomodoroDisplay() {
         }
 
         if (mode === "break") {
-          timerUpAudio.play();
+          playTimerUpSound();
         }
 
         if (mode === "long_break") {
-          timerUpAudio.play();
+          playTimerUpSound();
         }
 
         setMode("work");
