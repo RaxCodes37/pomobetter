@@ -57,6 +57,13 @@
       "when": 1794730291773,
       "tag": "0007_flawless_slipstream",
       "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1794975631383,
+      "tag": "0008_tranquil_wasp",
+      "breakpoints": true
     }
   ]
 }

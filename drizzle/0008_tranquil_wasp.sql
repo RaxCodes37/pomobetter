@@ -1,0 +1,1 @@
+ALTER TABLE "task" ADD COLUMN "category" text DEFAULT 'task' NOT NULL;
