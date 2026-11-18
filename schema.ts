@@ -19,7 +19,7 @@ export const task = pgTable("task", {
   taskCreator: text("task_creator")
     .notNull()
     .references(() => user.id),
-  category: text("category").default("task").notNull(),
+  isHabit: boolean("is_habit").default(false).notNull(),
 });
 
 export const user = pgTable("user", {
